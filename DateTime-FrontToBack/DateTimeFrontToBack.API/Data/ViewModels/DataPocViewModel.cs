@@ -9,7 +9,6 @@ namespace DateTimeFrontToBack.API.Data.ViewModels
     {
         public int Id { get; set; }
         // ReSharper disable once InconsistentNaming
-        public DateTime StoredDateTimeUTC { get; set; }
-        public DateTimeOffset StoredDateTimeOffset { get; set; }
+        public DateTime StoredDateTime { get; set; }
     }
 }
