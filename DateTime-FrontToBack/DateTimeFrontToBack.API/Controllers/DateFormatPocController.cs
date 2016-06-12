@@ -27,7 +27,7 @@ namespace DateTimeFrontToBack.API.Controllers
         [HttpGet]
         [Route("byid/{id:int}")]
         [ResponseType(typeof(DataPocAsIsViewModel))]
-        public async Task<IHttpActionResult> GetUserById(int id)
+        public async Task<IHttpActionResult> GetById(int id)
         {
             var retObj = await _pocContext.DataPocs.FindAsync(id);
             if (retObj != null)
