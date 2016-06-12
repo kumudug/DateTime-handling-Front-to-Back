@@ -26,14 +26,22 @@ namespace DateTimeFrontToBack.API.Controllers
 
         [HttpGet]
         [Route("byid/{id:int}")]
+        [ResponseType(typeof(DataPocAsIsViewModel))]
         public async Task<IHttpActionResult> GetUserById(int id)
         {
-            Console.WriteLine("abcd");
-            return Ok();
+            var retObj = await _pocContext.DataPocs.FindAsync(id);
+            if (retObj != null)
+            {
+                return Ok(retObj);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpPut]
-        [ResponseType(typeof(DataPocViewModel))]
+        [ResponseType(typeof(DataPocAsIsViewModel))]
         [Route("put")]
         public async Task<IHttpActionResult> Put(DataPocViewModel dataPoc)
         {
@@ -45,15 +53,21 @@ namespace DateTimeFrontToBack.API.Controllers
                     StoredDateTimeOffset = dataPoc.StoredDateTime
                 };
 
-                #region DataManipulationPart-Not a concern in POC
+                #region DataManipulationPart-Not a concern in 
+                //DataManipulationPart-Not a concern in POC
                 _pocContext.Set<DataPoc>().Add(dataPocDomVar);
 
                 var retVal = await _pocContext.SaveChangesAsync();
 
                 if (retVal > 0)
                 {
-                    dataPoc.Id = dataPocDomVar.Id;
-                    return Created($"put get url/{dataPocDomVar.Id}", dataPoc);
+                    var returnVm = new DataPocAsIsViewModel()
+                    {
+                        Id = dataPocDomVar.Id,
+                        StoredDateTimeOffset = dataPocDomVar.StoredDateTimeOffset,
+                        StoredDateTimeUTC = dataPocDomVar.StoredDateTimeUTC
+                    };
+                    return Created($"put get url/{dataPocDomVar.Id}", returnVm);
                 }
                 else
                 {

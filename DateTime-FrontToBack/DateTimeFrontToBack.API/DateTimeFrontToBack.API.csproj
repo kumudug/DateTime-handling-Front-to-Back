@@ -134,6 +134,7 @@
     <Compile Include="Data\Context\PocContext.cs" />
     <Compile Include="Data\Entities\DataPoc.cs" />
     <Compile Include="Data\Mappings\DataPocMap.cs" />
+    <Compile Include="Data\ViewModels\DataPocAsIsViewModel.cs" />
     <Compile Include="Data\ViewModels\DataPocViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
