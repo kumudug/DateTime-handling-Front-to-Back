@@ -1,0 +1,30 @@
+{
+  "name": "date-time-front-to-back.web",
+  "homepage": "https://github.com/kumudug/DateTime-handling-Front-to-Back",
+  "authors": [
+    "Kumudu Gunasekara <kumudugunasekara@hotmail.com>"
+  ],
+  "description": "POC to demo how to brind date time iso format from UI to backend",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "fontawesome#^4.6.3",
+    "angular": "^1.5.6",
+    "angular-ui-router": "^0.3.1",
+    "angular-resource": "^1.5.6",
+    "sweetalert": "^1.1.3",
+    "moment": "^2.13.0",
+    "angular-strap": "^2.3.9",
+    "angular-bootstrap": "^1.3.3"
+  }
+}
