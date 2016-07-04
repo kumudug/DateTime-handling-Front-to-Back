@@ -40,17 +40,17 @@ namespace DateTimeFrontToBack.API.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [ResponseType(typeof(DataPocAsIsViewModel))]
-        [Route("put")]
-        public async Task<IHttpActionResult> Put(DataPocViewModel dataPoc)
+        [Route("")]
+        public async Task<IHttpActionResult> Post(DataPocViewModel dataPoc)
         {
             if (ModelState.IsValid)
             {
                 var dataPocDomVar = new DataPoc()
                 {
                     StoredDateTimeUTC = dataPoc.StoredDateTime.ToUniversalTime(),
-                    StoredDateTimeOffset = dataPoc.StoredDateTime
+                    StoredDateTimeOffset = dataPoc.StoredDateTime.ToLocalTime()
                 };
 
                 #region DataManipulationPart-Not a concern in 
@@ -67,7 +67,7 @@ namespace DateTimeFrontToBack.API.Controllers
                         StoredDateTimeOffset = dataPocDomVar.StoredDateTimeOffset,
                         StoredDateTimeUTC = dataPocDomVar.StoredDateTimeUTC
                     };
-                    return Created($"put get url/{dataPocDomVar.Id}", returnVm);
+                    return Created($"/api/poc/byid/{dataPocDomVar.Id}", returnVm);
                 }
                 else
                 {

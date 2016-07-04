@@ -7,7 +7,6 @@ namespace DateTimeFrontToBack.API.Data.ViewModels
 {
     public class DataPocViewModel
     {
-        public int Id { get; set; }
         public DateTime StoredDateTime { get; set; }
     }
 }
