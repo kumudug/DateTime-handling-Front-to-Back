@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
@@ -10,18 +10,19 @@
     function homeCtrl($log, dataSvc) {
         /* jshint validthis:true */
         var vm = this;
-        vm.resetForm = resetForm;
-        vm.sharedDate = new Date();
-        vm.saveData = saveData;
+        vm.resetFormStrap = resetFormStrap;
+        vm.sharedDateStrap = new Date();
+        vm.saveDataStrap = saveDataStrap;
 
-        function resetForm() {
-            vm.sharedDate = new Date();
+        function resetFormStrap() {
+            vm.sharedDateStrap = new Date();
         }
 
-        function saveData() {
-            dataSvc.saveData({ storedDateTime: vm.sharedDate.toISOString() })
+        function saveDataStrap() {
+            dataSvc.saveData({ storedDateTime: vm.sharedDateStrap.toISOString() })
                 .then(function(data) {
                         $log.log(JSON.stringify(data));
+                        vm.returnDataStrap = data;
                     },
                     function rejected(reason) {
                         $log.error(reason);
@@ -30,5 +31,52 @@
                         $log.info(update);
                     });
         }
+
+
+        vm.resetFormUiStrap = resetFormUiStrap;
+        vm.sharedDateUiStrap = new Date();
+        vm.saveDataUiStrap = saveDataUiStrap;
+        vm.uiStrapOpened = {
+            date: false,
+            time: false
+        };
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date,
+              mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+        vm.dateOptions = {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        };
+
+        vm.dateOpen = function() {
+            vm.uiStrapOpened.date = true;
+        }
+
+        function resetFormUiStrap() {
+            vm.sharedDateUiStrap = new Date();
+        }
+
+        function saveDataUiStrap() {
+            dataSvc.saveData({ storedDateTime: vm.sharedDateUiStrap.toISOString() })
+                .then(function (data) {
+                    $log.log(JSON.stringify(data));
+                    vm.returnDataUiStrap = data;
+                },
+                    function rejected(reason) {
+                        $log.error(reason);
+                    },
+                    function notify(update) {
+                        $log.info(update);
+                    });
+        }
+
+
+        
     }
 })();

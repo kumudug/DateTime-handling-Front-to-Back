@@ -67,7 +67,7 @@ namespace DateTimeFrontToBack.API.Controllers
                         StoredDateTimeOffset = dataPocDomVar.StoredDateTimeOffset,
                         StoredDateTimeUTC = dataPocDomVar.StoredDateTimeUTC
                     };
-                    return Created($"/api/poc/byid/{dataPocDomVar.Id}", returnVm);
+                    return Created($"{new Uri(Request.RequestUri, RequestContext.VirtualPathRoot)}api/poc/byid/{dataPocDomVar.Id}", returnVm);
                 }
                 else
                 {

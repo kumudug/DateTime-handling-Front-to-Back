@@ -4,7 +4,7 @@
     <div class="col-md-5">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Input</h3>
+                <h3 class="panel-title">Input (Angular Strap)</h3>
             </div>
             <div class="panel-body">
                 <div ng-form="inputForm" class="form-horizontal">
@@ -12,7 +12,7 @@
                         <label for="inputDate" class="col-sm-2 control-label">Date</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" id="inputDate" class="form-control" ng-model="vm.sharedDate" data-autoclose="1" placeholder="Date" bs-datepicker data-date-format="dd-MM-yyyy" required>
+                                <input type="text" id="inputDate" class="form-control" ng-model="vm.sharedDateStrap" data-autoclose="1" placeholder="Date" bs-datepicker data-date-format="dd-MM-yyyy" required>
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
@@ -21,29 +21,108 @@
                         <label for="inputTime" class="col-sm-2 control-label">Time</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" id="inputTime" class="form-control" ng-model="vm.sharedDate" data-time-format="h:mm:ss a" data-autoclose="1" placeholder="Time" bs-timepicker required>
+                                <input type="text" id="inputTime" class="form-control" ng-model="vm.sharedDateStrap" data-time-format="h:mm:ss a" data-autoclose="1" placeholder="Time" bs-timepicker required>
                                 <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button ng-disabled="inputForm.$invalid" class="btn btn-success" ng-click="vm.saveData()">Save</button>
-                            <button class="btn btn-danger" ng-click="vm.resetForm()">Reset</button>
+                            <button ng-disabled="inputForm.$invalid" class="btn btn-success" ng-click="vm.saveDataStrap()">Save</button>
+                            <button class="btn btn-danger" ng-click="vm.resetFormStrap()">Reset</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-5">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Output</h3>
+                <h3 class="panel-title">Saved Data</h3>
             </div>
             <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputDate" class="col-sm-2 control-label">UTC</label>
+                        <div class="col-sm-10">
+                            <label class="form-control">{{vm.returnDataStrap.StoredDateTimeUTC}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDate" class="col-sm-2 control-label">Offset</label>
+                        <div class="col-sm-10">
+                            <label class="form-control">{{vm.returnDataStrap.StoredDateTimeOffset}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Input (UI Bootstrap)</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-form="inputForm" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputDate" class="col-sm-2 control-label">Date</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.sharedDateUiStrap" is-open="vm.uiStrapOpened.date" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.dateOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTime" class="col-sm-2 control-label">Time</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <!--<input type="text" id="inputTime" class="form-control" ng-model="vm.sharedDateUiStrap" data-time-format="h:mm:ss a" data-autoclose="1" placeholder="Time" bs-timepicker required>
+                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>-->
+                                <uib-timepicker ng-model="vm.sharedDateUiStrap" hour-step="1" minute-step="15" show-meridian="true"></uib-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button ng-disabled="inputForm.$invalid" class="btn btn-success" ng-click="vm.saveDataUiStrap()">Save</button>
+                            <button class="btn btn-danger" ng-click="vm.resetFormUiStrap()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-md-5">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Saved Data</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputDate" class="col-sm-2 control-label">UTC</label>
+                        <div class="col-sm-10">
+                            <label class="form-control">{{vm.returnDataUiStrap.StoredDateTimeUTC}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDate" class="col-sm-2 control-label">Offset</label>
+                        <div class="col-sm-10">
+                            <label class="form-control">{{vm.returnDataUiStrap.StoredDateTimeOffset}}</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

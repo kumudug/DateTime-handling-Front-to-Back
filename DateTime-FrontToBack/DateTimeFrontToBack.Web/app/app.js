@@ -9,7 +9,8 @@
 
         // 3rd Party Modules
         'ui.router',
-        'mgcrea.ngStrap'
+        'mgcrea.ngStrap',
+        'ui.bootstrap'
     ]);
 
     function config($stateProvider, $urlRouterProvider, $locationProvider) {

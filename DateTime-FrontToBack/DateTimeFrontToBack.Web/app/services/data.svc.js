@@ -12,7 +12,7 @@
             saveData: _saveData
         };
 
-        var saveEndpoint = $resource(settings.apiBaseUrl + '/api/poc/post');
+        var saveEndpoint = $resource(settings.apiBaseUrl + '/api/poc');
 
         return service;
 
